@@ -1,20 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.net.*;
-//problem with brain/await
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class Wordle1 implements ActionListener,FocusListener,KeyListener{
 	
@@ -28,7 +18,7 @@ public class Wordle1 implements ActionListener,FocusListener,KeyListener{
 	
 	JLabel titleLabel = new JLabel("The Wordle Archive");//The Wordle Archive
 	String gameMode = "August 28, 2023";
-	JLabel date = new JLabel(gameMode);//August 18, 2023
+	JLabel date = new JLabel(gameMode);
 	
 	JButton one = new JButton("Click Here");
 	JButton playAgainButton = new JButton("Random");
@@ -45,9 +35,9 @@ public class Wordle1 implements ActionListener,FocusListener,KeyListener{
 	JComboBox<Integer> dayBox = new JComboBox<Integer>(days);
 	JComboBox<Integer> yearBox = new JComboBox<Integer>(years);
 	
-	String fileName = "\\C:\\Users\\Benja\\OneDrive\\Documents\\wordle_words.txt\\";
+	final String FILEPATH = "\\C:\\Users\\Benja\\OneDrive\\Documents\\wordle_words.txt\\";//file path to wordle_words.txt here
 	
-	File wordFile = new File(fileName);
+	File wordFile = new File(FILEPATH);
 	
 	JPanel[][] boardArray = new JPanel[6][5];
 	JLabel[][] labelArray = new JLabel[6][5];
@@ -100,6 +90,7 @@ public class Wordle1 implements ActionListener,FocusListener,KeyListener{
 						WordleInstance1 x = new WordleInstance1(line);
 						if(x.word != null) {
 							list.add(x);
+							//System.out.println(x.word);
 						}	
 						if(line.indexOf("CIGAR") >=0 ) {
 							break;
@@ -115,6 +106,7 @@ public class Wordle1 implements ActionListener,FocusListener,KeyListener{
 					line1 = buffer1.readLine();
 					WordleInstance1 x = new WordleInstance1(line1,"");
 					list.add(x);
+					//System.out.println(x.word);
 					i = 200;
 				}
 			}
